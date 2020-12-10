@@ -14,13 +14,25 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class UsuarioGUI extends JFrame {
 
+	private static final long serialVersionUID = -3802345951710679112L;
+	
 	private JPanel contentPane;
 	private JTextField textFieldName;
 	private JTextField textFieldEmail;
 	private JPasswordField passwordFieldPassword;
+	
+	private JButton btnIncluir;
+	private JButton btnAlterar;
+	private JButton btnExcluir;
+	private JButton btnSair;
+	
+	private JRadioButton rdbtnAtivo;	
+	private JRadioButton rdbtnAdmin;
 
 	/**
 	 * Launch the application.
@@ -62,27 +74,34 @@ public class UsuarioGUI extends JFrame {
 		
 		passwordFieldPassword = new JPasswordField();
 		
-		JRadioButton rdbtnAtivo = new JRadioButton("Ativo");
+		//-----------------------------------------------------------------//			
+		rdbtnAtivo = new JRadioButton("Ativo");
 		
-		JRadioButton rdbtnAdmin = new JRadioButton("Adimistrador");
+		rdbtnAdmin = new JRadioButton("Adimistrador");
 		
-		JButton btnIncluir = new JButton("Incluir");
+		btnIncluir = new JButton("Incluir");
 		
-		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar = new JButton("Alterar");
 		
-		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir = new JButton("Excluir");
+		
+		btnSair = new JButton("Sair");
+		//-----------------------------------------------------------------//	
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(35)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(btnIncluir)
 							.addGap(18)
 							.addComponent(btnAlterar)
 							.addGap(18)
-							.addComponent(btnExcluir))
+							.addComponent(btnExcluir)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(btnSair, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblEmail)
@@ -122,9 +141,19 @@ public class UsuarioGUI extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnIncluir)
 						.addComponent(btnAlterar)
-						.addComponent(btnExcluir))
+						.addComponent(btnExcluir)
+						.addComponent(btnSair, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(179, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+	
+	private void createEvents() {
+		btnSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+	}
+	
 }
